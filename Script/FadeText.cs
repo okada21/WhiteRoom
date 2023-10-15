@@ -5,22 +5,29 @@ using TMPro;
 
 public class FadeText : MonoBehaviour
 {
-    [SerializeField]
-    private TextMeshProUGUI text;
-    bool aFlag;
+    [SerializeField] TextMeshProUGUI text;
+    public float stop_s;
+    public float r, g, b;
+    //透明度
     float a;
+    //透明にするフラグ
+    bool aFlag;
+
     // Start is called before the first frame update
     void Start()
     {
-        aFlag = false;
+        //透明度0
         a = 0.0f;
+        aFlag = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        text.color = new Color(1.0f, 0.0f, 0.0f, a);
-        Invoke("EscalateAlpha", 2.5f);
+        //textのカラー設定
+        text.color = new Color(r, g, b, a);
+        //n秒後変色開始
+        Invoke("EscalateAlpha", stop_s);
 
         if(aFlag)
         {
