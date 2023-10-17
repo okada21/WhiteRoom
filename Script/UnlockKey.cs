@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class DengerSquare : MonoBehaviour
+public class UnlockKey : MonoBehaviour
 {
     public AudioClip SE;
     AudioSource source;
@@ -23,29 +22,9 @@ public class DengerSquare : MonoBehaviour
         this.GetComponent<SpriteRenderer>().color = new Color(1.0f, 1.0f, 1.0f, a);
     }
 
-    //マウスクリックしたとき
-    public void GameOver()
+    public void clickKey()
     {
         //音鳴らす
         source.PlayOneShot(SE);
-        //ゲームオーバーへ移行
-        SceneManager.LoadScene("GameOver");
-
-    }
-
-    //スプレーが当たった時
-    void OnTriggerStay2D(Collider2D collider)
-    {
-        Debug.Log("なんか当たってます");
-        if (collider.gameObject.tag == "spray")
-        {
-            Debug.Log("当たってます");
-            a += Time.deltaTime;
-            if (a > 1.0f)
-            {
-                a = 1.0f;
-            }
-        }
     }
 }
-
