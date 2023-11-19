@@ -4,27 +4,58 @@ using UnityEngine;
 
 public class UnlockKey : MonoBehaviour
 {
-    public AudioClip SE;
+    public AudioClip waitSE;
+    public AudioClip enableSE;
     AudioSource source;
-    float a;
+    Color color;
+    public int clicknum_limit;
+    int clicknum;
+    bool enable;
     // Start is called before the first frame update
     void Start()
     {
         //Component‚ğæ“¾
         source = GetComponent<AudioSource>();
         //“§–¾‚É‚·‚é
-        a = 0.0f;
+        color = this.GetComponent<SpriteRenderer>().color;
+        color.a = 0.0f;
+        this.GetComponent<SpriteRenderer>().color = color;
+        //ƒNƒŠƒbƒN‰ñ”
+        clicknum = 0;
+        //Œ®‚ª–³Œø
+        enable = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        this.GetComponent<SpriteRenderer>().color = new Color(1.0f, 1.0f, 1.0f, a);
+
     }
 
     public void clickKey()
     {
-        //‰¹–Â‚ç‚·
-        source.PlayOneShot(SE);
+        if (!enable)
+        {
+            clicknum++;
+            if (clicknum != clicknum_limit)
+            {
+                //‰¹–Â‚ç‚·
+                source.PlayOneShot(waitSE);
+            }
+            else
+            {
+                color.a = 1.0f;
+                this.GetComponent<SpriteRenderer>().color = color;
+                enable = true;
+                //‰¹–Â‚ç‚·
+                source.PlayOneShot(enableSE);
+            }
+        }
+        else
+        {
+            
+            
+        }
+
     }
 }
