@@ -5,7 +5,8 @@ using UnityEngine;
 public class UnlockKey : MonoBehaviour
 {
     public AudioClip waitSE;
-    public AudioClip enableSE;
+    public AudioClip enableSE; 
+    Animator anim;
     AudioSource source;
     Color color;
     public int clicknum_limit;
@@ -15,6 +16,7 @@ public class UnlockKey : MonoBehaviour
     void Start()
     {
         //Component‚ðŽæ“¾
+        anim = gameObject.GetComponent<Animator>();
         source = GetComponent<AudioSource>();
         //“§–¾‚É‚·‚é
         color = this.GetComponent<SpriteRenderer>().color;
@@ -53,8 +55,11 @@ public class UnlockKey : MonoBehaviour
         }
         else
         {
-            
-            
+            //
+            if (anim.GetCurrentAnimatorStateInfo(0).IsName("None"))
+            {
+                anim.SetTrigger("Unlock");
+            }
         }
 
     }
