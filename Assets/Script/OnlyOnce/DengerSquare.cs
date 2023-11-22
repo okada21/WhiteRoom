@@ -36,10 +36,8 @@ public class DengerSquare : MonoBehaviour
     //ƒXƒvƒŒ[‚ª“–‚½‚Á‚½Žž
     void OnTriggerStay2D(Collider2D collider)
     {
-        Debug.Log("‚È‚ñ‚©“–‚½‚Á‚Ä‚Ü‚·");
         if (collider.gameObject.tag == "spray")
         {
-            Debug.Log("“–‚½‚Á‚Ä‚Ü‚·");
             a += Time.deltaTime;
             if (a > 1.0f)
             {
